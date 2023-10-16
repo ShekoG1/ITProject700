@@ -1,5 +1,6 @@
 import PinInput from "../../components/PinInput";
 import NavBtn from "../../components/NavBtn";
+import FilledBtn from "../../components/FilledBtn";
 import { useState } from "react";
 
 export default function Login(){
@@ -14,6 +15,7 @@ export default function Login(){
             // Make API request
             console.log(studentNumber);
             console.log(studentPin);
+            window.location.href = "/Dashboard"
         }
     }
     const login = (input)=>{
@@ -23,6 +25,7 @@ export default function Login(){
         if(studentNumber !== null){
             console.log(studentNumber);
             console.log(studentPin);
+            window.location.href = "/Dashboard";
         }
     };
 
@@ -39,16 +42,21 @@ export default function Login(){
                     <NavBtn href={"https://learning.richfield.ac.za/HET/login/index.php"} text={"Moodle"} newTab={true}/>
                 </nav>
 
-                <div id="student-number-container">
-                    <span>Student Number</span>
-                    <p>Hint: This is you 9-digit student number. For example, <strong>123-456-789</strong></p>
-                    <PinInput pinCount={9} flexDirection="column" autoSubmit={true} OnSubmit={saveStudentNumber}/>
-                </div>
-                <div id="student-pin-container">
-                    <span>Student Number</span>
-                    <p>Hint: This is your 4 digit student pin. For example, <strong>1234</strong></p>
-                    <div id="student-pin">
-                        <div className="decorative-line"></div><PinInput pinCount={4} flexDirection="column" autoSubmit={true} OnSubmit={login}/><div className="decorative-line"></div>
+                <div id="auth-box">
+                    <div id="student-number-container">
+                        <span>Student Number</span>
+                        <p>Hint: This is you 9-digit student number. For example, <strong>123-456-789</strong></p>
+                        <PinInput pinCount={9} flexDirection="column" autoSubmit={true} OnSubmit={saveStudentNumber}/>
+                    </div>
+                    <div id="student-pin-container">
+                        <span>Student Number</span>
+                        <p>Hint: This is your 4 digit student pin. For example, <strong>1234</strong></p>
+                        <div id="student-pin">
+                            <div className="decorative-line"></div><PinInput pinCount={4} flexDirection="column" autoSubmit={true} OnSubmit={login}/><div className="decorative-line"></div>
+                        </div>
+                        <div id="forgot-password-container">
+                            <FilledBtn label="Forgot Password?" onClick={()=>{}} id="forgot-password-btn"/>
+                        </div>
                     </div>
                 </div>
             </div>

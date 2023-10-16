@@ -67,6 +67,18 @@ nav .NavBtn span{
     width: 20%;
 }
 
+/* Forgot Password */
+#forgot-password-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+#forgot-password-container .FilledBtn .FilledBtn-Text{
+    font-size: 15px;
+}
+
 /* Footer */
 footer{
     width: 100%;

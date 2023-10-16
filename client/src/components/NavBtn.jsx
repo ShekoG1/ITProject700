@@ -24,7 +24,7 @@ export default function NavBtn(props){
             <span>
                 {props.text}
             </span>
-            <div className="hover"></div>
+            <div className="hover" style={props.highlight ? { maxWidth: '100%' } : null}></div>
         </button>
     );
 }

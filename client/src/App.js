@@ -1,34 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./islands/NavBar";
+import {  createBrowserRouter,
+  RouterProvider,} from "react-router-dom";
+// Import Layout 
+import Layout from './components/Layout';
 // Import Pages
 import Login from "./views/auth/Login";
 // import Academics from "./views/Academics"
-// import Dashboard from "./view/Dashboard";
-// import Finances from "./view/Finances";
-// import StudentDetails from "./view/StudentDetails";
+import Dashboard from "./views/Dashboard";
+// import Finances from "./views/Finances";
+// import StudentDetails from "./views/StudentDetails";
 
 
 function App() {
 
+    // initialize a browser router and define paths
+    const router = createBrowserRouter([
+      {
+        element: <Layout />,
+        children: 
+        [
+          {
+            path: "/",
+            element: <Login />,
+          },
+          {
+            path: "/Dashboard",
+            element: <Dashboard />,
+          },
+        ]
+      }
+    ])
+
   return (
-    <Login />
-    
-    // <>
-    //   <BrowserRouter>
-    //     <Routes>
-    //       <Route path="/" element={<NavBar />}>
-    //         <Route index element={<Login/>} />
-    //         {/* <Route path="latest" element={<ViewBlog/>} />
-    //         <Route path="latest" element={<Academics/>} />
-    //         <Route path="latest" element={<Dashboard/>} />
-    //         <Route path="latest" element={<Finances/>} />
-    //         <Route path="latest" element={<StudentDetails/>} /> */}
-    //       </Route>
-    //     </Routes>
-    //   </BrowserRouter>
-    // </>
+    <RouterProvider router={router} />
   );
 }
 
