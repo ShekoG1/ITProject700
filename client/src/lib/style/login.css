@@ -84,8 +84,6 @@ footer{
     width: 100%;
     background-color: var(--blue-light);
     color: white;
-    position: absolute;
-    bottom: 0;
     padding: 30px;
     display: flex;
     gap: 30px;
