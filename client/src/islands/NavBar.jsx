@@ -14,24 +14,28 @@ export default function NavBar(props){
         Required:
         - Highlight item (int)
     */
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    const isMobile = width <= 1024;
+    const [width, setWidth] = useState(window.innerWidth);
+    const [isMobile,setIsMobile] = useState(width <= 1024);
     // Events
     const toggleMobileNav = (e)=>{
         
     }
     const handleWindowSizeChange = ()=>{
         setWidth(window.innerWidth);
+        setIsMobile(width <= 1024);
     }
     useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
+        window.addEventListener('resize', handleWindowSizeChange());
         return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
+            window.removeEventListener('resize', handleWindowSizeChange());
         }
     }, []);
 
     return(
+        <>
         <nav>
+            {
+                !isMobile ?
             <div id="nav-items-container">
                 <div id="nav-items-list">
                     <NavBtn highlight={props.highlight} href="#" text="Dashboard"/>
@@ -40,6 +44,9 @@ export default function NavBar(props){
                     <NavBtn highlight={props.highlight} href="#" text="Academics"/>
                 </div>
             </div>
+            :
+            null
+            }
             <div id="nav-toggle-custom-icon" onClick={toggleMobileNav} >
                 <svg className="hb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="#eee" strokeWidth=".6" fill="rgba(0,0,0,0)" strokeLinecap="round" style={{cursor: "pointer", width: "50px"}}>
                     <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
@@ -59,5 +66,19 @@ export default function NavBar(props){
                 RICHFIELD
             </div>
         </nav>
+                    {
+                        isMobile ?
+                    <div id="nav-items-container">
+                        <div id="nav-items-list">
+                            <NavBtn highlight={props.highlight} href="#" text="Dashboard"/>
+                            <NavBtn highlight={props.highlight} href="#" text="Academics"/>
+                            <NavBtn highlight={props.highlight} href="#" text="Finances"/>
+                            <NavBtn highlight={props.highlight} href="#" text="Academics"/>
+                        </div>
+                    </div>
+                    :
+                    null
+                    }
+        </>
     );
 }

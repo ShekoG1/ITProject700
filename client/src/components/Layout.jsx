@@ -7,7 +7,7 @@ export default function Layout() {
 
     // Determine current nav link to highlight
 
-    const isAuth = location.pathname == "/" ? null : <NavBar />;
+    const isAuth = location.pathname === "/" ? null : <NavBar highlight={false} />;
     console.log(location.pathname);
     return (
         <>
