@@ -16,9 +16,10 @@ export default function NavBar(props){
     */
     const [width, setWidth] = useState(window.innerWidth);
     const [isMobile,setIsMobile] = useState(width <= 1024);
+    const [showMobileNav, setShowMobileNav] = useState(false);
     // Events
     const toggleMobileNav = (e)=>{
-        
+        setShowMobileNav(showMobileNav ? false : true);
     }
     const handleWindowSizeChange = ()=>{
         setWidth(window.innerWidth);
@@ -63,12 +64,12 @@ export default function NavBar(props){
                 </svg>
             </div>
             <div id="logo">
-                RICHFIELD
+                <span>RICHFIELD</span>
             </div>
         </nav>
                     {
                         isMobile ?
-                    <div id="nav-items-container">
+                    <div id="nav-items-container" className={showMobileNav ? "md-active" : "md-hide"}>
                         <div id="nav-items-list">
                             <NavBtn highlight={props.highlight} href="#" text="Dashboard"/>
                             <NavBtn highlight={props.highlight} href="#" text="Academics"/>
