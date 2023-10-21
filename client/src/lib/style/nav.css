@@ -89,6 +89,28 @@ nav{
         overflow: auto;
         height:100%;
     }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 0;
+    }
+  
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
     #nav-items-container #nav-items-list button{
         width: 100%;
     }
