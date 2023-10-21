@@ -58,22 +58,53 @@ nav{
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 33.33%;
     }
     nav{
         display: flex;
         flex-direction: row;
+        padding: 0 10px 0 10px;
+        box-sizing: border-box;
     }
     #nav-toggle-custom-icon{
         display: none;
     }
     #nav-items-container{
-        width: 30%;
         display: flex;
         align-items: center;
-    }
-    #nav-items-list{
-        flex-direction: row;
         justify-content: center;
-        align-items: start;
+        width: 33.33%;
+        max-height: 100%;
+        overflow: auto;
+    }
+    #nav-items-container button{
+        width: 10%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+    }
+    #nav-items-container #nav-items-list{
+        width: 80%;
+        flex-direction: row;
+        overflow: auto;
+        height:100%;
+    }
+    #nav-items-container #nav-items-list button{
+        width: 100%;
+    }
+    #logout-container{
+        width: 33.33%;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+    #logout-container .FilledBtn{
+        padding: 10px 15px 5px 15px;
+        width: 150px;
+        text-align: center;
+    }
+    #logout-container .FilledBtn .FilledBtn-Text{
+        width: 100%;
+        text-align: center;
     }
 }

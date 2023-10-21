@@ -2,6 +2,13 @@ import React from 'react';
 
 export default function FilledBtn(props) {
 
+  /*
+    Required:
+    - label
+    - onClick
+    Optioin:
+    - id
+  */
     const properties = {onClick:props.onClick,id:props.id,}
 
   return (
