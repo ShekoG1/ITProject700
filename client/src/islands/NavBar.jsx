@@ -162,7 +162,6 @@ export default function NavBar(props) {
               <NavBtn highlight={props.highlight} href="#" text="Dashboard" />
               <NavBtn highlight={props.highlight} href="#" text="Academics" />
               <NavBtn highlight={props.highlight} href="#" text="Finances" />
-              <NavBtn highlight={props.highlight} href="#" text="Academics" />
             </div>
             <button onClick={scrollRight}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-right" viewBox="0 0 16 16">
@@ -191,9 +190,11 @@ export default function NavBar(props) {
         <div id="logo">
           <span>RICHFIELD</span>
         </div>
-        <div id="logout-container">
-          <FilledBtn onClick={()=>{window.location.href = "/"}} label="Log Out"/>
-        </div>
+        {isMobile ? null :
+          <div id="logout-container">
+            <FilledBtn onClick={()=>{window.location.href = "/"}} label="Log Out"/>
+          </div>
+        }
       </nav>
       {isMobile ? (
         <div id="nav-items-container" className={showMobileNav ? 'md-active' : 'md-hide'}>

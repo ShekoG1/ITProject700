@@ -1,0 +1,56 @@
+/* Base components */
+#dashboard{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 5px;
+}
+
+.component{
+    padding: 10px;
+    background-color: var(--blue-modal);
+    min-height: 200px;
+    display: grid;
+    grid-template-areas: 'header' 'content' 'button';
+}
+
+/* Specific components */
+#finance-due .component-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+#finance-due .component-content span:nth-child(1){
+    font-size: 18px;
+}
+#finance-due .component-content span:nth-child(2){
+    font-size: 25px;
+}
+
+/* Sub components */
+.component-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.component-content{
+    color: white;
+}
+.view-now-btn{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-top: 10px;
+}
+.view-now-btn .FilledBtn{
+    min-width: 100px;
+    justify-content: center;
+}
+.view-now-btn .FilledBtn .FilledBtn-Text{
+    width: 100%;
+    font-size: 19px;
+}

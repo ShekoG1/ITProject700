@@ -84,7 +84,7 @@ nav{
         border: none;
     }
     #nav-items-container #nav-items-list{
-        width: 80%;
+        /* width: 80%; */
         flex-direction: row;
         overflow: auto;
         height:100%;
