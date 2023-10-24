@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 import Login from "./views/auth/Login";
 // import Academics from "./views/Academics"
 import Dashboard from "./views/Dashboard";
-// import Finances from "./views/Finances";
+import Finances from "./views/Finances";
 // import StudentDetails from "./views/StudentDetails";
 
 
@@ -26,6 +26,10 @@ function App() {
           {
             path: "/Dashboard",
             element: <Dashboard />,
+          },
+          {
+            path: "/Finances",
+            element: <Finances />,
           },
         ]
       }
