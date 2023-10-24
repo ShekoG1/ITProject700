@@ -1,54 +1,58 @@
 import FilledBtn from "../components/FilledBtn";
 import "../lib/style/dashboard.css"
+import finalResults from "../lib/assets/finalResults.jpg";
+import academicRecord from "../lib/assets/academicRecord.jpg";
+import progressReport from "../lib/assets/progressReport.jpg";
+import profile from "../lib/assets/profile.jpg";
 
 export default function Dashboard(props){
     return(
         <div id="dashboard">
-            <div className="component" id="finance-due">
-                <div className="component-heading">
-                    <span>Finance</span>
+            <div id="components">
+                <div className="component" id="finance-due">
+                    <div className="component-heading">
+                        <span>Finance</span>
+                    </div>
+                    <div className="component-content">
+                        <span>Next Payment</span>
+                        <span><strong>R 3, 500.00</strong></span>
+                    </div>
+                    <div className="view-now-btn">
+                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Finance"}}/>
+                    </div>
                 </div>
-                <div className="component-content">
-                    <span>Next Payment</span>
-                    <span><strong>R 3, 500.00</strong></span>
+                <div className="component" id="final-results">
+                    <div className="component-heading">
+                        <span>Final Results</span>
+                    </div>
+                    <div className="component-content">
+                        <img src={finalResults} alt="Final Results"/>
+                    </div>
+                    <div className="view-now-btn">
+                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Final-Results"}}/>
+                    </div>
                 </div>
-                <div className="view-now-btn">
-                    <FilledBtn label="View Details" onClick={()=>{window.location.href = "/Finance"}}/>
+                <div className="component" id="academic-record">
+                    <div className="component-heading">
+                        <span>Academic Record</span>
+                    </div>
+                    <div className="component-content">
+                        <img src={academicRecord} alt="Final Results"/>
+                    </div>
+                    <div className="view-now-btn">
+                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
+                    </div>
                 </div>
-            </div>
-            <div className="component" id="final-results">
-                <div className="component-heading">
-                    <span>Final Results</span>
-                </div>
-                <div className="component-content">
-                    <p>View your final results for each semester, of each year, of your designated program.</p>
-                </div>
-                <div className="view-now-btn">
-                    <FilledBtn label="View" onClick={()=>{window.location.href = "/Final-Results"}}/>
-                </div>
-            </div>
-            <div className="component" id="academic-record">
-                <div className="component-heading">
-                    <span>Academic Record</span>
-                </div>
-                <div className="component-content">
-                    <p>View all grades thus far for each semester, of each year, of your program.</p>
-                    <p>These grades include all assignments, tests and exams</p>
-                    <p><i>Note: This is often used to report grades in job applications</i></p>
-                </div>
-                <div className="view-now-btn">
-                    <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
-                </div>
-            </div>
-            <div className="component" id="progress-report">
-                <div className="component-heading">
-                    <span>Progress Report</span>
-                </div>
-                <div className="component-content">
-                    <p>View all grades of assignments and tests for the entirety of your program completed thus far.</p>
-                </div>
-                <div className="view-now-btn">
-                    <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
+                <div className="component" id="progress-report">
+                    <div className="component-heading">
+                        <span>Progress Report</span>
+                    </div>
+                    <div className="component-content">
+                        <img src={progressReport} alt="Final Results"/>
+                    </div>
+                    <div className="view-now-btn">
+                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
+                    </div>
                 </div>
             </div>
             <div className="component" id="student-advisor">
@@ -56,6 +60,7 @@ export default function Dashboard(props){
                     <span>Student Advisor Details</span>
                 </div>
                 <div className="component-content">
+                    <div id="details">
                     <p>You may contact your designated student advisor by using the following details</p>
 
                     <table>
@@ -101,6 +106,10 @@ export default function Dashboard(props){
                             </td>
                         </tr>
                     </table>
+                    </div>
+                    <div className="profile">
+                        <img src={profile} alt="Profile" />
+                    </div>
                 </div>
                 <div className="view-now-btn">
                     <FilledBtn label="Contact" onClick={()=>{window.location.href = "/Dashboard"}}/>
