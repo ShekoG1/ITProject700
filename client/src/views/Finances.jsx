@@ -3,6 +3,7 @@ import Finance_FeeDetail from "../islands/Finance_FeeDetail";
 import Finance_AgeAnalysis from "../islands/Finance_AgeAnalysis";
 import Finance_BursaryDetail from "../islands/Finance_BursaryDetail";
 import Finance_DepositDetail from "../islands/Finance_DepositDetail";
+import "./../lib/style/finances.css";
 
 
 export default function Finances(){

@@ -1,0 +1,26 @@
+
+#view-options{
+    padding: 20px;
+    display:flex;
+    flex-direction:row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+#view-options button{
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    transition: all 1s;
+}
+#view-options button:hover{
+    border-color: white;
+}
+#view-options button.option-selected{
+    border-color: var(--red);
+    background-color: var(--red);
+}
