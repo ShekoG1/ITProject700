@@ -1,0 +1,24 @@
+/* Academic Record */
+#academicrecord-content{
+    background-color: rgba(255, 255, 255, 0.175);
+    padding: 5px;
+}
+#headings{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+#student-info{
+    border-top: 2px solid var(--red);
+    border-bottom: 2px solid var(--red);
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
+#student-names{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+/* END Academic Record */
