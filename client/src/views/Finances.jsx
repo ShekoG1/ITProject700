@@ -43,7 +43,9 @@ export default function Finances(){
                 <button onClick={()=>{setSelectedOption("deposit_detail");}} className={selectedOption === "deposit_detail" ? "option option-selected":"option"}>Deposit Detail</button>
                 <button onClick={()=>{setSelectedOption("bursary_detail");}} className={selectedOption === "bursary_detail" ? "option option-selected":"option"}>Bursary Detail</button>
             </div>
-            {widget}
+            <div id="finance-content">
+                {widget}
+            </div>
         </div>
     );
 }

@@ -2,7 +2,9 @@
 export default function Finance_BursaryDetail(){
     return(
         <>
-            <h1>Bursary Detail</h1>
+        <div className="pnf-msg">
+            <span style={{color:"white"}}>Nothing Found!</span>
+        </div>
         </>
     );
 }

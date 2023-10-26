@@ -14,8 +14,8 @@ export default function NavBar(props) {
   const [showMobileNav, setShowMobileNav] = useState(false);
 
   const navWidget = <>
-    <NavBtn highlight={props.highlight} href="#" text="Dashboard" />
-    <NavBtn highlight={props.highlight} href="#" text="Academics" />
+    <NavBtn highlight={props.highlight} href="/Dashboard" text="Dashboard" />
+    <NavBtn highlight={props.highlight} href="/Academics" text="Academics" />
     <NavBtn highlight={props.highlight} href="/Finances" text="Finances" />
   </>
 

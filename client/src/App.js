@@ -5,7 +5,7 @@ import {  createBrowserRouter,
 import Layout from './components/Layout';
 // Import Pages
 import Login from "./views/auth/Login";
-// import Academics from "./views/Academics"
+import Academics from "./views/Academics"
 import Dashboard from "./views/Dashboard";
 import Finances from "./views/Finances";
 // import StudentDetails from "./views/StudentDetails";
@@ -30,6 +30,10 @@ function App() {
           {
             path: "/Finances",
             element: <Finances />,
+          },
+          {
+            path: "/Academics",
+            element: <Academics />,
           },
         ]
       }
