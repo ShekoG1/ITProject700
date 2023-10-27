@@ -22,7 +22,7 @@ export default function Academics_AcademicRecord(){
                 You owe the institution <span id="student-owing-amount">ZAR 7674</span>
             </div>
 
-            <div id="record">
+            <div className="record">
                 <div className="year">
                     <div className="represented-year">
                         2021
@@ -33,8 +33,8 @@ export default function Academics_AcademicRecord(){
                 </div>
                 <div className="records">
                     {/* RECORD ITEMS */}
-                    <div className="record-item">
-                        <div className="subject">
+                    <div className="record-item pass-distinction-border">
+                        <div className="subject"><span>SUBJECT:</span>
                             <span className="code">
                                 INS511A
                             </span>
@@ -62,7 +62,7 @@ export default function Academics_AcademicRecord(){
                                         <td className="final-mark">
                                                 88
                                         </td>
-                                        <td className="result">
+                                        <td className="result pass-distinction-text">
                                                 PASS DISTINCTION
                                         </td>
                                     </tr>
@@ -71,8 +71,174 @@ export default function Academics_AcademicRecord(){
                         </div>
                     </div>
 
-                    <div className="record-item">
-                        <div className="subject">
+                    <div className="record-item pass-warning-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                52
+                                        </td>
+                                        <td className="result pass-warning-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item pass-safe-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                68
+                                        </td>
+                                        <td className="result pass-safe-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item pass-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                73
+                                        </td>
+                                        <td className="result pass-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item fail-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                49
+                                        </td>
+                                        <td className="final-mark">
+                                                45
+                                        </td>
+                                        <td className="result fail-text">
+                                                FAIL
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {/* END RECORD ITEMS */}
+                </div>
+            </div>
+
+            <div className="record">
+                <div className="year">
+                    <div className="represented-year">
+                        2022
+                    </div>
+                </div>
+                <div className="qualification">
+                    RBSIT - BSC IN INFORMATION TECHNOLOGY
+                </div>
+                <div className="records">
+                    {/* RECORD ITEMS */}
+                    <div className="record-item pass-distinction-border">
+                        <div className="subject"><span>SUBJECT:</span>
                             <span className="code">
                                 INS511A
                             </span>
@@ -100,7 +266,7 @@ export default function Academics_AcademicRecord(){
                                         <td className="final-mark">
                                                 88
                                         </td>
-                                        <td className="result">
+                                        <td className="result pass-distinction-text">
                                                 PASS DISTINCTION
                                         </td>
                                     </tr>
@@ -109,8 +275,174 @@ export default function Academics_AcademicRecord(){
                         </div>
                     </div>
 
-                    <div className="record-item">
-                        <div className="subject">
+                    <div className="record-item pass-warning-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                52
+                                        </td>
+                                        <td className="result pass-warning-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item pass-safe-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                68
+                                        </td>
+                                        <td className="result pass-safe-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item pass-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                73
+                                        </td>
+                                        <td className="result pass-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item fail-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                49
+                                        </td>
+                                        <td className="final-mark">
+                                                45
+                                        </td>
+                                        <td className="result fail-text">
+                                                FAIL
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {/* END RECORD ITEMS */}
+                </div>
+            </div>
+
+            <div className="record">
+                <div className="year">
+                    <div className="represented-year">
+                        2023
+                    </div>
+                </div>
+                <div className="qualification">
+                    RBSIT - BSC IN INFORMATION TECHNOLOGY
+                </div>
+                <div className="records">
+                    {/* RECORD ITEMS */}
+                    <div className="record-item pass-distinction-border">
+                        <div className="subject"><span>SUBJECT:</span>
                             <span className="code">
                                 INS511A
                             </span>
@@ -138,7 +470,7 @@ export default function Academics_AcademicRecord(){
                                         <td className="final-mark">
                                                 88
                                         </td>
-                                        <td className="result">
+                                        <td className="result pass-distinction-text">
                                                 PASS DISTINCTION
                                         </td>
                                     </tr>
@@ -147,8 +479,8 @@ export default function Academics_AcademicRecord(){
                         </div>
                     </div>
 
-                    <div className="record-item">
-                        <div className="subject">
+                    <div className="record-item pass-warning-border">
+                        <div className="subject"><span>SUBJECT:</span>
                             <span className="code">
                                 INS511A
                             </span>
@@ -174,10 +506,10 @@ export default function Academics_AcademicRecord(){
                                                 90
                                         </td>
                                         <td className="final-mark">
-                                                88
+                                                52
                                         </td>
-                                        <td className="result">
-                                                PASS DISTINCTION
+                                        <td className="result pass-warning-text">
+                                                PASS
                                         </td>
                                     </tr>
                                 </tbody>
@@ -185,8 +517,8 @@ export default function Academics_AcademicRecord(){
                         </div>
                     </div>
 
-                    <div className="record-item">
-                        <div className="subject">
+                    <div className="record-item pass-safe-border">
+                        <div className="subject"><span>SUBJECT:</span>
                             <span className="code">
                                 INS511A
                             </span>
@@ -212,10 +544,86 @@ export default function Academics_AcademicRecord(){
                                                 90
                                         </td>
                                         <td className="final-mark">
-                                                88
+                                                68
                                         </td>
-                                        <td className="result">
-                                                PASS DISTINCTION
+                                        <td className="result pass-safe-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item pass-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                90
+                                        </td>
+                                        <td className="final-mark">
+                                                73
+                                        </td>
+                                        <td className="result pass-text">
+                                                PASS
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="record-item fail-border">
+                        <div className="subject"><span>SUBJECT:</span>
+                            <span className="code">
+                                INS511A
+                            </span>
+                            <span className="title">
+                                INFORMATION SYSTEMS 511
+                            </span>
+                        </div>
+                        <div className="academic-period">
+                        SEMESTER 1 (JAN - JUN)
+                        </div>
+                        <div className="marks">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year Mark</th>
+                                        <th>Final Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="year-mark">
+                                                49
+                                        </td>
+                                        <td className="final-mark">
+                                                45
+                                        </td>
+                                        <td className="result fail-text">
+                                                FAIL
                                         </td>
                                     </tr>
                                 </tbody>

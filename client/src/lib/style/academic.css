@@ -12,13 +12,148 @@
 }
 #student-info{
     border-top: 2px solid var(--red);
-    border-bottom: 2px solid var(--red);
     margin: 5px 0 5px 0;
     padding: 5px 0 5px 0;
+    color: white;
 }
 #student-names{
     display: flex;
     flex-direction: row;
     gap: 2px;
 }
+#student-owes-institution{
+    color: white;
+    font-weight: normal;
+    font-style: italic;
+}
+#student-owing-amount{
+    font-weight: bold;
+}
+#school{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+#headings span:nth-child(2){
+    font-size: 30px;
+    color: white;
+}
+.record{
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+.year{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+.represented-year{
+    font-size: 25px;
+    font-weight: bold;
+}
+.represented-year, .qualification{
+    color: white;
+}
+.records{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.record-item{
+    padding: 5px;
+    color: white;
+    border-left: 2px solid black;
+}
+.subject{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap:30px;
+}
+.subject span:nth-child(1){
+    font-weight: bold;
+}
+.marks table{
+    width: 100%;
+}
+
+tr td{
+    text-align: center;
+}
+
+tr td:nth-child(3){
+    width: 60%;
+    font-weight: bold;
+}
 /* END Academic Record */
+
+
+/* GENERAL */
+.fail-border{
+    border-color: red;
+}
+.pass-warning-border{
+    border-color: orange;
+}
+.pass-safe-border{
+    border-color: yellow;
+}
+.pass-border{
+    border-color: rgb(65, 195, 65);
+}
+.pass-distinction-border{
+    border-color: rgb(212, 89, 212);
+}
+
+.fail-text, .pass-warning-text, .pass-safe-text, .pass-text, .pass-distinction-text{
+    padding: 5px;
+}
+    
+
+.fail-text{
+    background-color: red;
+    color: rgb(255, 152, 152);
+}
+.pass-warning-text{
+    background-color: orange;
+    color: rgb(255, 220, 154);
+}
+.pass-safe-text{
+    background-color: yellow;
+    color: rgb(46, 46, 30);
+}
+.pass-text{
+    background-color: rgb(65, 195, 65);
+    color: rgb(46, 65, 46);
+}
+.pass-distinction-text{
+    background-color: rgb(212, 89, 212);
+    color: rgb(255, 206, 255);
+}
+/* END GENERAL */
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    #academicrecord-content{
+        margin: 0 25% 0 25%;
+    }
+    .marks{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .marks table{
+        width: 50%;
+    }
+    .records{
+        padding: 30px;
+    }
+    .record-item{
+        border-left-width: 10px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+}
