@@ -89,6 +89,96 @@ tr td:nth-child(3){
 }
 /* END Academic Record */
 
+/* Progress Report */
+#progressreport-content{
+    background-color: rgba(255, 255, 255, 0.175);
+    padding: 5px;
+}
+#progressreport-content #header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: all 1s;
+    border: 2px solid white;
+}
+#student-details{
+    padding: 10px 0 10px 0;
+    color: white;
+}
+
+.report-year{
+    background-color: black;
+    color: white;
+    font-weight: bolder;
+    padding: 5px;
+    text-align: center;
+}
+.report-qualification{
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.report-content{
+    padding: 10px;
+}
+.report-subject{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.report-subject span{
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+.report-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    color: white;
+}
+.exam-admission{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+.exam-admission-icon{
+    display: none;
+}
+.grades{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.grade-detail{
+    width: 100%;
+    color: white;
+}
+.grade-group{
+    color: black;
+    font-weight: bold;
+}
+.mark-type{
+    display: flex;
+    flex-direction: row;
+}
+.mark-type div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.marks table{
+    background-color: black;
+    margin: 5px;
+}
+.marks table thead{
+    border-bottom: 2px solid var(--red);
+}
+/* END PROGRESS REPORT */
 
 /* GENERAL */
 .fail-border{
@@ -136,6 +226,7 @@ tr td:nth-child(3){
 
 /* Desktop */
 @media only screen and (min-width: 768px) {
+    /* Academic Record */
     #academicrecord-content{
         margin: 0 25% 0 25%;
     }
@@ -155,5 +246,32 @@ tr td:nth-child(3){
         width: 80%;
         margin: 0 auto;
     }
-
+    /* Progress Report */
+    #progressreport-content{
+        margin: 0 25% 0 25%;
+    }
+    #progressreport-content #header{
+        margin: 0 20% 0 20%;
+    }
+    .report-detail{
+        flex-direction: row;
+        gap: 10px;
+    }
+    .report-detail div {
+        width: 33.33%;
+        padding: 5px;
+        text-align: center;
+    }
+    .grade{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .grade .mark-type{
+        width: 80%;
+    }
+    .grade .marks{
+        width: 100%;
+    }
 }
