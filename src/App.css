@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+:root {
+  --red: #F0413D;
+  --blue: #004CA2;
+  --blue-light: #0056B7;
+  --blue-modal: #165AAA;
+  --grey: #757575;
+  font-family: 'Oswald';
+}
+
+body{
+  font-family: 'Oswald', sans-serif;
+  background-color: var(--blue);
+}
+
+/* FilledBtn */
+.FilledBtn{
+  background-color: var(--red);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: none;
+}
+.FilledBtn-Text{
+  font-weight: bold;
+  color: white;
+}
+.FilledBtn-Hover{
+  max-width: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 1s;
+}
+.FilledBtn:hover .FilledBtn-Hover{
+  max-width: 100%;
+}
+/* PinInput */
+.PinInput-Container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.Pins-Row{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.PinInput-Pin{
+  width: 30px;
+  height: 50px;
+  border-radius: 12px;
+  border: none;
+  text-align: center;
+  color: var(--grey);
+  font-weight: bolder;
+}
+.PinInput-Pin:focus{
+  border: none;
+}
+.PinInput-Pin:disabled{
+  background-color: white;
+}
+.PinInput-SubmitBtn-Container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/* NavBtn */
+.NavBtn{
+  background-color: transparent;
+  border: none;
+}
+.NavBtn:focus{
+  border: none;
+}
+.NavBtn span{
+  font-size: 25px;
+  padding: 10px;
+  color: white;
+}
+.NavBtn .hover{
+  width: 100%;
+  max-width: 0;
+  height: 2px;
+  background-color: var(--red);
+  transition: all 1s;
+}
+.NavBtn:hover .hover{
+  max-width: 100%;
+}
+
+/* Animations */
+@keyframes fadeLeftIn {
+  from {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+  }
+  to{
+    position: initial;
+    opacity: 1;
+  }
+}
+
+/* General formatting */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

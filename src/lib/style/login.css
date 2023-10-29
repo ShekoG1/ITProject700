@@ -1,0 +1,127 @@
+#login-header{
+    width: 100%;
+    height: 70px;
+    background-color: var(--blue-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid var(--red);
+    box-sizing: border-box;
+}
+/* Navigation */
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    gap: 10px;
+    overflow: auto;
+    padding: 5px 0 5px 0;
+    height: 60px;
+}
+nav .NavBtn span{
+    letter-spacing: -1px;
+}
+
+/* Student input */
+#student-number-container{
+    padding: 30px;
+}
+#student-pin-container{
+    padding: 0 30px 0 30px;
+}
+#student-number-container, #student-pin-container{
+    color: white;
+    font-weight: lighter;
+}
+#student-number-container span, #student-pin-container span{
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+#student-number-container .PinInput-Pin{
+    width: 20px;
+    height: 35px;
+}
+#student-pin-container .PinInput-Pin{
+    width: 30px;
+    height: 45px;
+}
+#student-number-container .PinInput-Container .Pins-Row .PinInput-Pin:nth-child(3), #student-number-container .PinInput-Container .Pins-Row .PinInput-Pin:nth-child(6){
+    margin-right: 5px;
+}
+#student-pin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Line deco */
+.decorative-line{
+    height: 3px;
+    background-color: white;
+    width: 20%;
+}
+
+/* Forgot Password */
+#forgot-password-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+#forgot-password-container .FilledBtn .FilledBtn-Text{
+    font-size: 15px;
+}
+
+/* Footer */
+footer{
+    width: 100%;
+    background-color: var(--blue-light);
+    color: white;
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid var(--red);
+    box-sizing: border-box;
+}
+footer .contact-cta span{
+    font-size: 30px;
+}
+footer .legal{
+    font-size: 15px;
+}
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    #login-header{
+        padding-left: 20px;
+    }
+    #login-header,nav{
+        justify-content: left;
+    }
+    #student-number-container, #student-pin-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #student-pin-container{
+        padding-top: 60px;
+    }
+    #student-pin{
+        width: 100%;
+    }
+    #student-number-container .PinInput-Pin{
+        width: 30px;
+        height: 45px;
+    }
+}
