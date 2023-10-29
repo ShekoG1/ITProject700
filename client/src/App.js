@@ -8,7 +8,7 @@ import Login from "./views/auth/Login";
 import Academics from "./views/Academics"
 import Dashboard from "./views/Dashboard";
 import Finances from "./views/Finances";
-// import StudentDetails from "./views/StudentDetails";
+import StudentInfo from './views/StudentInfo';
 
 
 function App() {
@@ -34,6 +34,10 @@ function App() {
           {
             path: "/Academics",
             element: <Academics />,
+          },
+          {
+            path: "/StudentInfo",
+            element: <StudentInfo />,
           },
         ]
       }

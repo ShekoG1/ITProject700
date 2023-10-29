@@ -180,6 +180,90 @@ tr td:nth-child(3){
 }
 /* END PROGRESS REPORT */
 
+
+/* Exam Results */
+#examResults{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#exam-year-qualification-options{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; 
+    padding: 30px;
+    box-sizing: border-box;
+}
+.exam-item{
+    width: 100%;
+    background-color: var(--blue-modal);
+    padding: 10px;
+}
+.exam-item .exam-year, .exam-item .exam-qualification{
+    color: white;
+}
+.exam-item .exam-year{
+    font-weight: bold;
+    font-size: 30px;
+}
+.exam-item .exam-qualification{
+    font-size: 25px;
+}
+#student-details-exam-year{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    width: fit-content;
+    padding: 5px;
+    color: white;
+    border: 2px solid white;
+}
+#go-back{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+#go-back button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+    color: white;
+    border-bottom: 1px solid transparent;
+    padding: 10px;
+    transition: all 1s;
+}
+#go-back button:hover{
+    border-bottom-color: var(--red);
+}
+#exam-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card{
+    background-color: var(--blue-modal);
+    padding: 10px;
+    border-left: 2px solid black;
+    color: white;
+}
+.card-content table tbody tr td{
+    text-align: left;
+    width: 50%;
+}
+td span{
+    display: block;
+    width: 100%;
+}
+/* END EXAM RESULTS */
+
 /* GENERAL */
 .fail-border{
     border-color: red;
@@ -273,5 +357,13 @@ tr td:nth-child(3){
     }
     .grade .marks{
         width: 100%;
+    }
+
+    /* Exam Results */
+    #exam-year-qualification-options{
+        width: 100%; 
+    }
+    #exam-details{
+        /* padding: 0 25% 0 25%; */
     }
 }

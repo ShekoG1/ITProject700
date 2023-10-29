@@ -1,10 +1,5 @@
 import NavBtn from "../components/NavBtn";
 import FilledBtn from "../components/FilledBtn";
-import Login from "../views/auth/Login";
-import Academics from "../views/Academics"
-import Dashboard from "../views/Dashboard";
-import Finances from "../views/Finances";
-import StudentDetails from "../views/StudentDetails";
 import "./../lib/style/nav.css";
 import React, { useState ,useEffect,useRef,number} from 'react';
 
@@ -17,6 +12,7 @@ export default function NavBar(props) {
     <NavBtn highlight={props.highlight} href="/Dashboard" text="Dashboard" />
     <NavBtn highlight={props.highlight} href="/Academics" text="Academics" />
     <NavBtn highlight={props.highlight} href="/Finances" text="Finances" />
+    <NavBtn highlight={props.highlight} href="/StudentInfo" text="Student Info" />
   </>
 
   const navItemsListRef = useRef(null); // Ref for the nav-items-list

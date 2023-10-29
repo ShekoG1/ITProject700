@@ -18,6 +18,9 @@
     display: grid;
     grid-template-areas: 'header' 'content';
 }
+.component-content img{
+    max-width: 100%;
+}
 
 /* Specific components */
 #finance-due{

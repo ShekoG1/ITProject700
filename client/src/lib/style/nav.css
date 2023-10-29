@@ -70,6 +70,9 @@ nav{
     #nav-toggle-custom-icon{
         display: none;
     }
+    #nav-items-list {
+        justify-content: left;
+    }
     #nav-items-container{
         display: flex;
         align-items: center;
@@ -114,6 +117,7 @@ nav{
 
     #nav-items-container #nav-items-list button{
         width: 100%;
+        white-space: nowrap;
     }
     #logout-container{
         width: 33.33%;
