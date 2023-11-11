@@ -5,7 +5,6 @@ import Finance_BursaryDetail from "../islands/Finance_BursaryDetail";
 import Finance_DepositDetail from "../islands/Finance_DepositDetail";
 import "./../lib/style/finances.css";
 
-
 export default function Finances(){
 
     // All select option string use underscores for spaces and are always lower cased

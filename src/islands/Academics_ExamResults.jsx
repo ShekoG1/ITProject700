@@ -1,8 +1,9 @@
 import { useState } from "react";
 import ExamResultCard from "../components/ExamResultCard";
-
+import validateUser from './../util/auth';
 
 export default function Academics_ExamResults(){
+    validateUser();
 
     const [showResults, setShowResults] = useState(false);
     const[yearDisplayed, setYearDisplayed] = useState("2023");

@@ -29,6 +29,13 @@ nav{
     letter-spacing: -0.5px;
     width: 100%;
 }
+#logo span{
+    cursor: pointer;
+    transition: all 1s;
+}
+#logo span:hover{
+    letter-spacing: 2px;
+}
 
 #nav-items-container{
     display: none;
@@ -51,6 +58,19 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: start;
+}
+#logout-container{
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#logout-container .FilledBtn{
+    width: 100%;
+    align-items: center;
+}
+#logout-container .FilledBtn .FilledBtn-Text{
+    font-size: 20px;
+    text-align: center;
 }
 
 /* Desktop */
@@ -120,6 +140,7 @@ nav{
         white-space: nowrap;
     }
     #logout-container{
+        padding: 0;
         width: 33.33%;
         display: flex;
         justify-content: right;

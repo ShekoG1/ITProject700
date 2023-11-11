@@ -31,23 +31,30 @@
 /* Specific components */
 .component{
     transition: all 1s;
+    cursor: pointer;
 }
 .component .component-content{
     overflow: hidden;
 }
-.component:hover .component-content img{
+.component .component-content img{
     transition: all 1s;
+}
+.component:hover .component-content img{
     transform: scale(1.1,1.1);
 }
 #finance-due{
     padding: 5px;
 }
-#finance-due:hover .component-heading{
+#finance-due .component-heading{
     transition: all 1s;
+}
+#finance-due:hover .component-heading{
     font-size: 50px;
 }
-#finance-due:hover .component-content{
+#finance-due .component-content{
     transition: all 1s;
+}
+#finance-due:hover .component-content{
     font-size: 40px;
 }
 #finance-due{
@@ -107,6 +114,13 @@
     font-size: 50px;
     align-items: center;
     color: white;
+    cursor: pointer;
+}
+#quote strong{
+    transition: all 1s;
+}
+#quote strong:hover{
+    color: orange;
 }
 
 .orange:hover{

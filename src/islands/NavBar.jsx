@@ -2,8 +2,11 @@ import NavBtn from "../components/NavBtn";
 import FilledBtn from "../components/FilledBtn";
 import "./../lib/style/nav.css";
 import React, { useState ,useEffect,useRef,number} from 'react';
+import logOut from "./../util/logout";
+import validateUser from './../util/auth';
 
 export default function NavBar(props) {
+  validateUser();
   const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(width <= 1024);
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -13,6 +16,10 @@ export default function NavBar(props) {
     <NavBtn highlight={props.highlight} href="/Academics" text="Academics" />
     <NavBtn highlight={props.highlight} href="/Finances" text="Finances" />
     <NavBtn highlight={props.highlight} href="/StudentInfo" text="Student Info" />
+    <hr />
+    <div id="logout-container">
+      <FilledBtn onClick={()=>logOut()} label="Log Out"/>
+    </div>
   </>
 
   const navItemsListRef = useRef(null); // Ref for the nav-items-list
@@ -84,11 +91,11 @@ export default function NavBar(props) {
             </div>
         )}
         <div id="logo">
-          <span>RICHFIELD</span>
+          <span >RICHFIELD</span>
         </div>
         {isMobile ? null :
           <div id="logout-container">
-            <FilledBtn onClick={()=>{window.location.href = "/"}} label="Log Out"/>
+            <FilledBtn onClick={()=>logOut()} label="Log Out"/>
           </div>
         }
       </nav>

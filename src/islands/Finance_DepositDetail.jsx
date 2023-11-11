@@ -1,4 +1,4 @@
-
+import validateUser from './../util/auth';
 
 export default function Finance_DepositDetail(){
     return(

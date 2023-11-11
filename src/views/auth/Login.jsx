@@ -2,30 +2,66 @@ import PinInput from "../../components/PinInput";
 import NavBtn from "../../components/NavBtn";
 import FilledBtn from "../../components/FilledBtn";
 import { useState } from "react";
+import { createClient } from '@supabase/supabase-js'
+import Swal from 'sweetalert2';
+import autoLogin from './../../util/autoLogin';
 
 export default function Login(){
+    autoLogin();
+    const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+    const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+    const supabase = createClient(supabaseUrl, supabaseKey)
 
     const [studentNumber, setStudentNumber] = useState(null);
     const [studentPin, setStudentPin] = useState(null);
 
-    const saveStudentNumber = (input)=>{
+    const saveStudentNumber = async (input)=>{
         setStudentNumber(input.toString());
 
         if(studentPin !== null){
             // Make API request
             console.log(studentNumber);
             console.log(studentPin);
-            window.location.href = "/Dashboard"
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: `${studentNumber}@my.richfield.ac.za`,
+                password: studentPin
+            });
+
+            console.log(data);
+            console.log(`LOGIN\nStudent Number: ${studentNumber}\nPin: ${input.toString()}\n${error}`);
+            if(error){
+                alert(`error`);
+            }else{
+                window.location.href = "/Dashboard";
+            }
         }
     }
-    const login = (input)=>{
+    const login = async (input)=>{
         setStudentPin(input.toString());
 
         // Make API request
         if(studentNumber !== null){
             console.log(studentNumber);
             console.log(studentPin);
-            window.location.href = "/Dashboard";
+
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: `${studentNumber}@my.richfield.ac.za`,
+                password: input.toString()
+            });
+
+            console.log(data);
+            console.log(`LOGIN\nStudent Number: ${studentNumber}\nPin: ${input.toString()}\n${error}`);
+            if(error){
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Invalid login credentials! Please try again later`,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                  })
+            }else{
+                localStorage.setItem('token', data.session.access_token);
+                window.location.href = "/Dashboard";
+            }
         }
     };
 
@@ -49,7 +85,7 @@ export default function Login(){
                         <PinInput pinCount={9} flexDirection="column" autoSubmit={true} OnSubmit={saveStudentNumber}/>
                     </div>
                     <div id="student-pin-container">
-                        <span>Student Number</span>
+                        <span>Student Pin</span>
                         <p>Hint: This is your 4 digit student pin. For example, <strong>1234</strong></p>
                         <div id="student-pin">
                             <div className="decorative-line"></div><PinInput pinCount={4} flexDirection="column" autoSubmit={true} OnSubmit={login}/><div className="decorative-line"></div>

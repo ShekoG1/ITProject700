@@ -1,7 +1,8 @@
-
+import validateUser from './../util/auth';
 
 export default function Academics_AcademicRecord(){
-
+    validateUser();
+    
     return(
         <div id="academicrecord-content">
             <div id="headings">

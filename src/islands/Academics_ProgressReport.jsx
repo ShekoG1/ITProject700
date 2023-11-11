@@ -1,6 +1,7 @@
-
+import validateUser from './../util/auth';
 
 export default function Academics_ProgressReport(){
+    validateUser();
 
     return(
         <div id="progressreport-content">

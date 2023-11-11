@@ -6,6 +6,7 @@ import progressReport from "../lib/assets/progressReport.jpg";
 import profile from "../lib/assets/profile.jpg";
 
 export default function Dashboard(props){
+
     return(
         <div id="dashboard">
             <div id="components">
@@ -17,9 +18,6 @@ export default function Dashboard(props){
                         <span>Next Payment</span>
                         <span><strong>R 3, 500.00</strong></span>
                     </div>
-                    {/* <div className="view-now-btn">
-                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Finance"}}/>
-                    </div> */}
                 </div>
                 <div className="component orange" id="final-results" onClick={()=>{window.location = "/Academics"}}>
                     <div className="component-content">
@@ -28,9 +26,6 @@ export default function Dashboard(props){
                     <div className="component-heading">
                         <span>Final Results</span>
                     </div>
-                    {/* <div className="view-now-btn">
-                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Final-Results"}}/>
-                    </div> */}
                 </div>
                 <div className="component pink" id="academic-record" onClick={()=>{window.location = "/Academics"}}>
                     <div className="component-content">
@@ -39,9 +34,6 @@ export default function Dashboard(props){
                     <div className="component-heading">
                         <span>Academic Record</span>
                     </div>
-                    {/* <div className="view-now-btn">
-                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
-                    </div> */}
                 </div>
                 <div className="component purple" id="progress-report" onClick={()=>{window.location = "/Academics"}}>
                     <div className="component-content">
@@ -50,9 +42,6 @@ export default function Dashboard(props){
                     <div className="component-heading">
                         <span>Progress Report</span>
                     </div>
-                    {/* <div className="view-now-btn">
-                        <FilledBtn label="View" onClick={()=>{window.location.href = "/Dashboard"}}/>
-                    </div> */}
                 </div>
             </div>
             <div id="bottom-content">

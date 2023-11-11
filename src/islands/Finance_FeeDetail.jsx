@@ -1,3 +1,4 @@
+import validateUser from './../util/auth';
 import DataTable from 'react-data-table-component';
 
 export default function Finance_FeeDetail(){
