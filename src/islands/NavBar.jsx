@@ -17,9 +17,9 @@ export default function NavBar(props) {
     <NavBtn highlight={props.highlight} href="/Finances" text="Finances" />
     <NavBtn highlight={props.highlight} href="/StudentInfo" text="Student Info" />
     <hr />
-    <div id="logout-container">
+    {isMobile ? <div id="logout-container">
       <FilledBtn onClick={()=>logOut()} label="Log Out"/>
-    </div>
+    </div> : <></>}
   </>
 
   const navItemsListRef = useRef(null); // Ref for the nav-items-list

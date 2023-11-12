@@ -30,8 +30,15 @@ export default function Login(){
             console.log(data);
             console.log(`LOGIN\nStudent Number: ${studentNumber}\nPin: ${input.toString()}\n${error}`);
             if(error){
-                alert(`error`);
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Invalid login credentials! Please try again later`,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                })
             }else{
+                localStorage.setItem('studentNumber',studentNumber);
+                localStorage.setItem('token', data.session.access_token);
                 window.location.href = "/Dashboard";
             }
         }
@@ -57,13 +64,30 @@ export default function Login(){
                     text: `Invalid login credentials! Please try again later`,
                     icon: 'error',
                     confirmButtonText: 'Okay'
-                  })
+                })
             }else{
+                localStorage.setItem('studentNumber',studentNumber);
                 localStorage.setItem('token', data.session.access_token);
                 window.location.href = "/Dashboard";
             }
         }
     };
+    const showAbout = ()=>{
+        Swal.fire({
+            title: 'About Richfields\' iEnabler System',
+            html: `Invalid login credentials! Please try again later`,
+            icon: 'info',
+            confirmButtonText: 'Got it!'
+        })
+    }
+    const showHelp = ()=>{
+        Swal.fire({
+            title: 'Error!',
+            text: `Invalid login credentials! Please try again later`,
+            icon: 'error',
+            confirmButtonText: 'Okay'
+        })
+    }
 
     return(
         <>
@@ -73,8 +97,8 @@ export default function Login(){
 
             <div className="content">
                 <nav>
-                    <NavBtn href={"#home"} text={"About"} />
-                    <NavBtn href={"#home"} text={"Help"} />
+                    <NavBtn href={"#"} onClick={showAbout} text={"About"} />
+                    <NavBtn href={"#"} onClick={showHelp} text={"Help"} />
                     <NavBtn href={"https://learning.richfield.ac.za/HET/login/index.php"} text={"Moodle"} newTab={true}/>
                 </nav>
 
