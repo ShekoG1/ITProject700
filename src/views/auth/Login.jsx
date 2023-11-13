@@ -115,7 +115,8 @@ export default function Login(){
                             <div className="decorative-line"></div><PinInput pinCount={4} flexDirection="column" autoSubmit={true} OnSubmit={login}/><div className="decorative-line"></div>
                         </div>
                         <div id="forgot-password-container">
-                            <FilledBtn label="Forgot Password?" onClick={()=>{}} id="forgot-password-btn"/>
+                            {/* mailto:khanyisilengobo@richfield.ac.za?subject=[StudentNumber] - iEnabler Password Reset Request&body=Hi%20there%20Khanyisile,%0D%0A%0D%0AI%20hope%20you%20are%20well.%20I%20seem%20to%20have%20forgotten%20my%20password%20to%20access%20the%20iEnabler%20system.%20Please%20can%20you%20reset%20my%20password.%0D%0A%0D%0AThank%20you%20in%20advance.%0D%0A%0D%0AKind%20regards,%0D%0A[StudentNumber] */}
+                            <FilledBtn label="Forgot Password?" onClick={()=>{window.open('mailto:email@example.com?subject=Subject&body=Body%20goes%20here')}} id="forgot-password-btn"/>
                         </div>
                     </div>
                 </div>
@@ -123,7 +124,7 @@ export default function Login(){
 
             <footer>
                 <div className="contact-cta">
-                    <span><strong>Contact Us</strong></span>
+                    <a href="https://www.richfield.ac.za/quick-application/" target="_blank"><strong>Contact Us</strong></a>
                 </div>
                 <div className="legal">
                     <span>

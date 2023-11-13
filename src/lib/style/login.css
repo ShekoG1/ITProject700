@@ -93,8 +93,10 @@ footer{
     border-top: 2px solid var(--red);
     box-sizing: border-box;
 }
-footer .contact-cta span{
+footer .contact-cta a{
     font-size: 30px;
+    text-decoration: none;
+    color: white;
 }
 footer .legal{
     font-size: 15px;
