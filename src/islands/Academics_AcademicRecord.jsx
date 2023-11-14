@@ -1,7 +1,41 @@
 import validateUser from './../util/auth';
+import {React,useState,useEffect} from 'react';
+import { createClient } from '@supabase/supabase-js';
+import processAcademicData from '../util/handleAcademicRecord';
 
 export default function Academics_AcademicRecord(){
+    // Ensure user is logged in before showing sensitive data
     validateUser();
+
+    // Instantiate Supabase
+    const supabase = createClient(
+        process.env.REACT_APP_SUPABASE_URL,
+        process.env.REACT_APP_SUPABASE_KEY
+    );
+
+    // Declarations
+    const [results, setResults] = useState([]);
+
+    // Supabase request to get all academic data for student
+    const fetchResults = async () => {
+        const { data, error } = await supabase
+            .from('results')
+            .select('*').eq('student_number',localStorage.getItem('studentNumber'));
+        // Handle request result
+        if (error) console.log("Error: ", error);
+        else handleData(data);
+    };
+
+    useEffect(() => {
+        // Get student data as soon as the page loads
+        fetchResults();
+    }, []);
+
+    const handleData = (data) => {
+        console.log(data);
+        // Process data before returning it to the results state
+        setResults(processAcademicData(data))
+    };
     
     return(
         <div id="academicrecord-content">
@@ -23,618 +57,66 @@ export default function Academics_AcademicRecord(){
                 You owe the institution <span id="student-owing-amount">ZAR 7674</span>
             </div>
 
-            <div className="record">
-                <div className="year">
-                    <div className="represented-year">
-                        2021
-                    </div>
-                </div>
-                <div className="qualification">
-                    RBSIT - BSC IN INFORMATION TECHNOLOGY
-                </div>
-                <div className="records">
-                    {/* RECORD ITEMS */}
-                    <div className="record-item pass-distinction-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
+            {results.map((module) => {
+                return module.years.map((year) => {
+                    return (
+                        <div className="record">
+                            <div className="year">
+                                <div className="represented-year">
+                                    {year.year}
+                                </div>
+                            </div>
+                            <div className="qualification">
+                                RBSIT - BSC IN INFORMATION TECHNOLOGY
+                            </div>
+                            <div className="records">
+                                {year.semesters.map((semester) => {
+                                    return (
+                                        <div className={`record-item ${semester.total >= 75 ? 'pass-distinction-border' : semester.total >= 60 ? 'pass-safe-border' : semester.total >= 50 ? 'pass-warning-border' : semester.total >= 40 ? 'pass-border' : 'fail-border'}`}>
+                                            <div className="subject"><span>SUBJECT:</span>
+                                                <span className="code">
+                                                    {module.module_code}
+                                                </span>
+                                                <span className="title">
+                                                    {module.module_code}
+                                                </span>
+                                            </div>
+                                            <div className="academic-period">
+                                                SEMESTER {semester.semester} (JAN - JUN)
+                                            </div>
+                                            <div className="marks">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Year Mark</th>
+                                                            <th>Final Mark</th>
+                                                            <th>Result</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="year-mark">
+                                                                {semester.total}
+                                                            </td>
+                                                            <td className="final-mark">
+                                                                {semester.total}
+                                                            </td>
+                                                            <td className={`result ${semester.total >= 75 ? 'pass-distinction-text' : semester.total >= 60 ? 'pass-safe-text' : semester.total >= 50 ? 'pass-warning-text' : semester.total >= 40 ? 'pass-text' : 'fail-text'}`}>
+                                                                {semester.total >= 40 ? 'PASS' : 'FAIL'}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                88
-                                        </td>
-                                        <td className="result pass-distinction-text">
-                                                PASS DISTINCTION
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-warning-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                52
-                                        </td>
-                                        <td className="result pass-warning-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-safe-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                68
-                                        </td>
-                                        <td className="result pass-safe-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                73
-                                        </td>
-                                        <td className="result pass-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item fail-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                49
-                                        </td>
-                                        <td className="final-mark">
-                                                45
-                                        </td>
-                                        <td className="result fail-text">
-                                                FAIL
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {/* END RECORD ITEMS */}
-                </div>
-            </div>
-
-            <div className="record">
-                <div className="year">
-                    <div className="represented-year">
-                        2022
-                    </div>
-                </div>
-                <div className="qualification">
-                    RBSIT - BSC IN INFORMATION TECHNOLOGY
-                </div>
-                <div className="records">
-                    {/* RECORD ITEMS */}
-                    <div className="record-item pass-distinction-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                88
-                                        </td>
-                                        <td className="result pass-distinction-text">
-                                                PASS DISTINCTION
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-warning-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                52
-                                        </td>
-                                        <td className="result pass-warning-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-safe-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                68
-                                        </td>
-                                        <td className="result pass-safe-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                73
-                                        </td>
-                                        <td className="result pass-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item fail-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                49
-                                        </td>
-                                        <td className="final-mark">
-                                                45
-                                        </td>
-                                        <td className="result fail-text">
-                                                FAIL
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {/* END RECORD ITEMS */}
-                </div>
-            </div>
-
-            <div className="record">
-                <div className="year">
-                    <div className="represented-year">
-                        2023
-                    </div>
-                </div>
-                <div className="qualification">
-                    RBSIT - BSC IN INFORMATION TECHNOLOGY
-                </div>
-                <div className="records">
-                    {/* RECORD ITEMS */}
-                    <div className="record-item pass-distinction-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                88
-                                        </td>
-                                        <td className="result pass-distinction-text">
-                                                PASS DISTINCTION
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-warning-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                52
-                                        </td>
-                                        <td className="result pass-warning-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-safe-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                68
-                                        </td>
-                                        <td className="result pass-safe-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item pass-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                90
-                                        </td>
-                                        <td className="final-mark">
-                                                73
-                                        </td>
-                                        <td className="result pass-text">
-                                                PASS
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="record-item fail-border">
-                        <div className="subject"><span>SUBJECT:</span>
-                            <span className="code">
-                                INS511A
-                            </span>
-                            <span className="title">
-                                INFORMATION SYSTEMS 511
-                            </span>
-                        </div>
-                        <div className="academic-period">
-                        SEMESTER 1 (JAN - JUN)
-                        </div>
-                        <div className="marks">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Year Mark</th>
-                                        <th>Final Mark</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="year-mark">
-                                                49
-                                        </td>
-                                        <td className="final-mark">
-                                                45
-                                        </td>
-                                        <td className="result fail-text">
-                                                FAIL
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {/* END RECORD ITEMS */}
-                </div>
-            </div>
-
+                    );
+                });
+            })}
+            {/* RECORD END */}
         </div>
     );
 }
