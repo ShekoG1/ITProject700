@@ -1,7 +1,8 @@
 import validateUser from './../util/auth';
 
-export default function Academics_ProgressReport(){
+export default function Academics_ProgressReport(props){
     validateUser();
+    const results = props.results;
 
     return(
         <div id="progressreport-content">
