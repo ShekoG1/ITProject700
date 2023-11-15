@@ -49,15 +49,15 @@ export default function Academics(){
     // Determine widget to show
     switch (selectedOption) {
         case "academic_record":
-            let recordData = processAcademicData(results);
+            let recordData = results != null ? processAcademicData(results) : {};
             widget = <Academics_AcademicRecord results={recordData} />;
         break;
         case "progress_report":
-            let reportData = processAcademicData(results);
+            let reportData = results != null ? processAcademicData(results) : {};
             widget = <Academics_ProgressReport results={reportData} />
         break;
         case "exam_results":
-            let examData = processAcademicData(results);
+            let examData = results != null ? processAcademicData(results) : {};
             widget = <Academics_ExamResults results={examData} />
         break;
     
