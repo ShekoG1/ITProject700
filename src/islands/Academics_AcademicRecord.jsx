@@ -8,6 +8,7 @@ export default function Academics_AcademicRecord(props){
     validateUser();
 
     const results = props.results
+    console.log(results)
 
     // // Instantiate Supabase
     // const supabase = createClient(
