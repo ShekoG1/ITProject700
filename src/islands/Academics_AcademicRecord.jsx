@@ -3,39 +3,41 @@ import {React,useState,useEffect} from 'react';
 import { createClient } from '@supabase/supabase-js';
 import processAcademicData from '../util/handleAcademicRecord';
 
-export default function Academics_AcademicRecord(){
+export default function Academics_AcademicRecord(props){
     // Ensure user is logged in before showing sensitive data
     validateUser();
 
-    // Instantiate Supabase
-    const supabase = createClient(
-        process.env.REACT_APP_SUPABASE_URL,
-        process.env.REACT_APP_SUPABASE_KEY
-    );
+    const results = props.results
 
-    // Declarations
-    const [results, setResults] = useState([]);
+    // // Instantiate Supabase
+    // const supabase = createClient(
+    //     process.env.REACT_APP_SUPABASE_URL,
+    //     process.env.REACT_APP_SUPABASE_KEY
+    // );
 
-    // Supabase request to get all academic data for student
-    const fetchResults = async () => {
-        const { data, error } = await supabase
-            .from('results')
-            .select('*').eq('student_number',localStorage.getItem('studentNumber'));
-        // Handle request result
-        if (error) console.log("Error: ", error);
-        else handleData(data);
-    };
+    // // Declarations
+    // const [results, setResults] = useState([]);
 
-    useEffect(() => {
-        // Get student data as soon as the page loads
-        fetchResults();
-    }, []);
+    // // Supabase request to get all academic data for student
+    // const fetchResults = async () => {
+    //     const { data, error } = await supabase
+    //         .from('results')
+    //         .select('*').eq('student_number',localStorage.getItem('studentNumber'));
+    //     // Handle request result
+    //     if (error) console.log("Error: ", error);
+    //     else handleData(data);
+    // };
 
-    const handleData = (data) => {
-        console.log(data);
-        // Process data before returning it to the results state
-        setResults(processAcademicData(data))
-    };
+    // useEffect(() => {
+    //     // Get student data as soon as the page loads
+    //     fetchResults();
+    // }, []);
+
+    // const handleData = (data) => {
+    //     console.log(data);
+    //     // Process data before returning it to the results state
+    //     setResults(processAcademicData(data))
+    // };
     
     return(
         <div id="academicrecord-content">
