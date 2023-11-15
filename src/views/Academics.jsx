@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Academics_AcademicRecord from "../islands/Academics_AcademicRecord";
 import Academics_ProgressReport from "../islands/Academics_ProgressReport";
 import Academics_ExamResults from "../islands/Academics_ExamResults";
@@ -49,15 +49,15 @@ export default function Academics(){
     // Determine widget to show
     switch (selectedOption) {
         case "academic_record":
-            let recordData = processAcademicData(data);
+            let recordData = processAcademicData(results);
             widget = <Academics_AcademicRecord results={recordData} />;
         break;
         case "progress_report":
-            let reportData = processAcademicData(data);
+            let reportData = processAcademicData(results);
             widget = <Academics_ProgressReport results={reportData} />
         break;
         case "exam_results":
-            let examData = processAcademicData(data);
+            let examData = processAcademicData(results);
             widget = <Academics_ExamResults results={examData} />
         break;
     
