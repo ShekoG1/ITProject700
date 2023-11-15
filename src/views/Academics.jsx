@@ -8,59 +8,39 @@ import processAcademicData from '../util/handleAcademicRecord';
 
 export default function Academics(){
 
-    // All select option string use underscores for spaces and are always lower cased
     const [selectedOption, setSelectedOption] = useState("academic_record");
-    const [widgetProps, setWidgetProps] = useState({});
+    const [results, setResults] = useState(null);
     let widget = null;
 
-    // Get all student academic data
-    // --------------------------------------------------------------------------------------------------------------
-    // Instantiate Supabase
     const supabase = createClient(
         process.env.REACT_APP_SUPABASE_URL,
         process.env.REACT_APP_SUPABASE_KEY
     );
 
-    // Declarations
-    const [results, setResults] = useState(null);
-
-    // Supabase request to get all academic data for student
     const fetchResults = async () => {
         const { data, error } = await supabase
             .from('results')
             .select('*').eq('student_number',localStorage.getItem('studentNumber'));
-        // Handle request result
         if (error) console.log("Error: ", error);
-        else handleData(data);
+        else setResults(data);
     };
 
     useEffect(() => {
-        // Get student data as soon as the page loads
         fetchResults();
     }, []);
-    // --------------------------------------------------------------------------------------------------------------
 
-    const handleData = (data) => {
-        console.log(data);
-        // Process data before returning it to the results state
-        setResults(data)
-    };
+    const getWidgetData = () => results ? processAcademicData(results) : {};
 
-    // Determine widget to show
     switch (selectedOption) {
         case "academic_record":
-            let recordData = results != null ? processAcademicData(results) : {};
-            widget = <Academics_AcademicRecord results={recordData} />;
-        break;
+            widget = <Academics_AcademicRecord results={getWidgetData()} />;
+            break;
         case "progress_report":
-            let reportData = results != null ? processAcademicData(results) : {};
-            widget = <Academics_ProgressReport results={reportData} />
-        break;
+            widget = <Academics_ProgressReport results={getWidgetData()} />
+            break;
         case "exam_results":
-            let examData = results != null ? processAcademicData(results) : {};
-            widget = <Academics_ExamResults results={examData} />
-        break;
-    
+            widget = <Academics_ExamResults results={getWidgetData()} />
+            break;
         default:
             widget = <>
                 <h1>Oops...Something went wrong!</h1>
@@ -68,7 +48,6 @@ export default function Academics(){
             </>
             break;
     }
-
 
     return (
         <div id="finances">
