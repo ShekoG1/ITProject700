@@ -136,8 +136,8 @@ tr td:nth-child(3){
 .report-detail{
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
     color: white;
 }
 .exam-admission{
@@ -177,6 +177,26 @@ tr td:nth-child(3){
 }
 .marks table thead{
     border-bottom: 2px solid var(--red);
+}
+.report-content .grade{
+    overflow: auto;
+}
+.report-grade tr{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+.progress-heading{
+    padding: 10px;
+    font-size: 20px;
+    background-color: black;
+    font-weight: bold;
+}
+.exam{
+    background-color: orange;
+    color: white;
+    font-weight: bolder;
 }
 /* END PROGRESS REPORT */
 

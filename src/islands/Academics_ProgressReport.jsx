@@ -1,9 +1,11 @@
 import validateUser from './../util/auth';
+import DataManipulation from './../util/dataManipulation';
 
 export default function Academics_ProgressReport(props){
     validateUser();
+    const dataManipulation = new DataManipulation();
     const results = props.results;
-
+    console.log(results)
     return(
         <div id="progressreport-content">
             <div id="header">
@@ -18,260 +20,44 @@ export default function Academics_ProgressReport(props){
                 <div id="student-number">402101963</div>
             </div>
             <div id="progress-reports">
-                {/* A Single report */}
-                <div className="report">
-                    <div className="report-year">2023</div>
-                    <div className="report-qualification">RBSIT: BSC IN INFORMATION TECHNOLOGY</div>
-                    <div className="report-content">
-                        <div className="report-subject">
-                            <span>SUBJECT: AFI700D</span>
-                            <span>ARTIFICIAL INTELLIGENCE 700</span>
-                        </div>
-                        <div className="report-detail">
-                            <div className="academic-period">Semester 1 (JAN - JUN)</div>
-                            <div className="half-period-mark">Half Period Mark:</div>
-                            <div className="full-period-mark">Full Period Mark: 74</div>
-                        </div>
-                        <div className="exam-admission">
-                            Exam Admission: Y
-                        </div>
-                        <div className="grades">
-                            <div className="exam-admission-icon">
-                                YES
-                            </div>
-                            <div className="grade-detail">
-                                <div className="grade-group">Group: Class - A</div>
-                                {/* Always two grade groups */}
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            ASSIGNMENTS
+                {results.map((module, index) => {
+                    return module.years.map((year, yearIndex) => {
+                        return year.semesters.map((semester, semesterIndex) => {
+                            return (
+                                <div key={`${index}-${yearIndex}-${semesterIndex}`} className="report">
+                                    <div className="report-year">{year.year}</div>
+                                    {/* <div className="report-qualification">{module.module_code}</div> */}
+                                    <div className="report-qualification">BSC IT</div>
+                                    <div className="report-content">
+                                         <div className="report-subject">
+                                            <span>SUBJECT: {module.module_code}</span>
                                         </div>
-                                        <div className="mark">
-                                            Mark: 71
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Assignment 1</th>
-                                                    <th>Assignment 2</th>
-                                                </tr>
-                                            </thead>
+                                        <table className='grade'>
                                             <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>70</td>
-                                                    <td>72</td>
-                                                </tr>
+                                            {semester.marks.map((mark, markIndex) => {
+                                                return (
+                                                    <td key={markIndex} className="report-grade">
+                                                        <tr className={`progress-heading ${mark.type === "exam" ? 'exam':null}`}>{dataManipulation.formatString(mark.type)}</tr>
+                                                        <tr>{mark.mark_percentage}</tr>
+                                                    </td>
+                                                );
+                                            })}
                                             </tbody>
                                         </table>
+                                        <div className='breaker'></div>
+                                        <div className="report-detail">
+                                            <div className="academic-period">Semester {semester.semester}</div>
+                                            <div className="full-period-mark">Full Period Mark: {semester.total}</div>
+                                        </div>
+                                        <div className="exam-admission">
+                                            Exam Admission: Y
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            CONTINUOUS ASSESSMENT
-                                        </div>
-                                        <div className="mark">
-                                            Mark: 79
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>CA 1</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>79</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                {/* END GRADE GROUPS */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* END REPORT */}
-
-                {/* A Single report */}
-                <div className="report">
-                    <div className="report-year">2023</div>
-                    <div className="report-qualification">RBSIT: BSC IN INFORMATION TECHNOLOGY</div>
-                    <div className="report-content">
-                        <div className="report-subject">
-                            <span>SUBJECT: AFI700D</span>
-                            <span>ARTIFICIAL INTELLIGENCE 700</span>
-                        </div>
-                        <div className="report-detail">
-                            <div className="academic-period">Semester 1 (JAN - JUN)</div>
-                            <div className="half-period-mark">Half Period Mark:</div>
-                            <div className="full-period-mark">Full Period Mark: 74</div>
-                        </div>
-                        <div className="exam-admission">
-                            Exam Admission: Y
-                        </div>
-                        <div className="grades">
-                            <div className="exam-admission-icon">
-                                YES
-                            </div>
-                            <div className="grade-detail">
-                                <div className="grade-group">Group: Class - A</div>
-                                {/* Always two grade groups */}
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            ASSIGNMENTS
-                                        </div>
-                                        <div className="mark">
-                                            Mark: 71
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Assignment 1</th>
-                                                    <th>Assignment 2</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>70</td>
-                                                    <td>72</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            CONTINUOUS ASSESSMENT
-                                        </div>
-                                        <div className="mark">
-                                            Mark: 79
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>CA 1</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>79</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                {/* END GRADE GROUPS */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* END REPORT */}
-
-                {/* A Single report */}
-                <div className="report">
-                    <div className="report-year">2023</div>
-                    <div className="report-qualification">RBSIT: BSC IN INFORMATION TECHNOLOGY</div>
-                    <div className="report-content">
-                        <div className="report-subject">
-                            <span>SUBJECT: AFI700D</span>
-                            <span>ARTIFICIAL INTELLIGENCE 700</span>
-                        </div>
-                        <div className="report-detail">
-                            <div className="academic-period">Semester 1 (JAN - JUN)</div>
-                            <div className="half-period-mark">Half Period Mark:</div>
-                            <div className="full-period-mark">Full Period Mark: 74</div>
-                        </div>
-                        <div className="exam-admission">
-                            Exam Admission: Y
-                        </div>
-                        <div className="grades">
-                            <div className="exam-admission-icon">
-                                YES
-                            </div>
-                            <div className="grade-detail">
-                                <div className="grade-group">Group: Class - A</div>
-                                {/* Always two grade groups */}
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            ASSIGNMENTS
-                                        </div>
-                                        <div className="mark">
-                                            Mark: 71
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Assignment 1</th>
-                                                    <th>Assignment 2</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>70</td>
-                                                    <td>72</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div className="grade">
-                                    <div className="mark-type">
-                                        <div className="type">
-                                            CONTINUOUS ASSESSMENT
-                                        </div>
-                                        <div className="mark">
-                                            Mark: 79
-                                        </div>
-                                    </div>
-                                    <div className="marks">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>CA 1</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>79</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                {/* END GRADE GROUPS */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* END REPORT */}
+                            );
+                        });
+                    });
+                })}
             </div>
         </div>
     );

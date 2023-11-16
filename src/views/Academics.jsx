@@ -22,24 +22,22 @@ export default function Academics(){
             .from('results')
             .select('*').eq('student_number',localStorage.getItem('studentNumber'));
         if (error) console.log("Error: ", error);
-        else setResults(data);
+        else setResults(processAcademicData(data));
     };
 
     useEffect(() => {
         fetchResults();
     }, []);
 
-    const getWidgetData = () => results ? processAcademicData(results) : {};
-
     switch (selectedOption) {
         case "academic_record":
-            widget = <Academics_AcademicRecord results={getWidgetData()} />;
+            widget = results == null ? <></> : <Academics_AcademicRecord results={results} />;
             break;
         case "progress_report":
-            widget = <Academics_ProgressReport results={getWidgetData()} />
+            widget = <Academics_ProgressReport results={results} />
             break;
         case "exam_results":
-            widget = <Academics_ExamResults results={getWidgetData()} />
+            widget = <Academics_ExamResults results={results} />
             break;
         default:
             widget = <>

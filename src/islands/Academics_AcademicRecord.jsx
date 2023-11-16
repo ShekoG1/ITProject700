@@ -59,65 +59,80 @@ export default function Academics_AcademicRecord(props){
             <div id="student-owes-institution">
                 You owe the institution <span id="student-owing-amount">ZAR 7674</span>
             </div>
-
-            {results.map((module) => {
-                return module.years.map((year) => {
-                    return (
-                        <div className="record">
-                            <div className="year">
-                                <div className="represented-year">
-                                    {year.year}
-                                </div>
-                            </div>
-                            <div className="qualification">
-                                RBSIT - BSC IN INFORMATION TECHNOLOGY
-                            </div>
-                            <div className="records">
-                                {year.semesters.map((semester) => {
-                                    return (
-                                        <div className={`record-item ${semester.total >= 75 ? 'pass-distinction-border' : semester.total >= 60 ? 'pass-safe-border' : semester.total >= 50 ? 'pass-warning-border' : semester.total >= 40 ? 'pass-border' : 'fail-border'}`}>
-                                            <div className="subject"><span>SUBJECT:</span>
-                                                <span className="code">
-                                                    {module.module_code}
-                                                </span>
-                                                <span className="title">
-                                                    {module.module_code}
-                                                </span>
-                                            </div>
-                                            <div className="academic-period">
-                                                SEMESTER {semester.semester} (JAN - JUN)
-                                            </div>
-                                            <div className="marks">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Year Mark</th>
-                                                            <th>Final Mark</th>
-                                                            <th>Result</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td className="year-mark">
-                                                                {semester.total}
-                                                            </td>
-                                                            <td className="final-mark">
-                                                                {semester.total}
-                                                            </td>
-                                                            <td className={`result ${semester.total >= 75 ? 'pass-distinction-text' : semester.total >= 60 ? 'pass-safe-text' : semester.total >= 50 ? 'pass-warning-text' : semester.total >= 40 ? 'pass-text' : 'fail-text'}`}>
-                                                                {semester.total >= 40 ? 'PASS' : 'FAIL'}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+            {Object.entries(results.reduce((acc, module) => {
+                module.years.forEach((year) => {
+                    if (!acc[year.year]) {
+                        acc[year.year] = [];
+                    }
+                    year.semesters.forEach((semester) => {
+                        console.log(semester)
+                        // --------------------------------------------------
+                        // Final mark an year mark calculations here
+                        //---------------------------------------------------
+                        acc[year.year].push({
+                            module_code: module.module_code,
+                            semester: semester.semester,
+                            total: semester.total
+                        });
+                    });
+                });
+                return acc;
+            }, {})).map(([year, modules], index) => {
+                return (
+                    <div key={index} className="record">
+                        <div className="year">
+                            <div className="represented-year">
+                                {year}
                             </div>
                         </div>
-                    );
-                });
+                        <div className="qualification">
+                            RBSIT - BSC IN INFORMATION TECHNOLOGY
+                        </div>
+                        <div className="records">
+                            {modules.map((module, moduleIndex) => {
+                                return (
+                                    <div key={moduleIndex} className={`record-item ${module.total >= 75 ? 'pass-distinction-border' : module.total >= 60 ? 'pass-safe-border' : module.total >= 50 ? 'pass-warning-border' : module.total >= 40 ? 'pass-border' : 'fail-border'}`}>
+                                        <div className="subject"><span>SUBJECT:</span>
+                                                                                       <span className="code">
+                                                                                               {module.module_code}
+                                                                                       </span>
+                                            <span className="title">
+                                                {module.module_code}
+                                            </span>
+                                        </div>
+                                        <div className="academic-period">
+                                            SEMESTER {module.semester} (JAN - JUN)
+                                        </div>
+                                        <div className="marks">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Year Mark</th>
+                                                        <th>Final Mark</th>
+                                                        <th>Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="year-mark">
+                                                            {module.total}
+                                                        </td>
+                                                        <td className="final-mark">
+                                                            {module.total}
+                                                        </td>
+                                                        <td className={`result ${module.total >= 75 ? 'pass-distinction-text' : module.total >= 60 ? 'pass-safe-text' : module.total >= 50 ? 'pass-warning-text' : module.total >= 40 ? 'pass-text' : 'fail-text'}`}>
+                                                            {module.total >= 40 ? 'PASS' : 'FAIL'}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                );
             })}
             {/* RECORD END */}
         </div>
