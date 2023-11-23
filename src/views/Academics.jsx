@@ -5,11 +5,15 @@ import Academics_ExamResults from "../islands/Academics_ExamResults";
 import "./../lib/style/academic.css";
 import { createClient } from '@supabase/supabase-js';
 import processAcademicData from '../util/handleAcademicRecord';
+import handleExamData from "../util/handleExamResults";
+import getStudentInfo from '../util/getStudentInfo';
 
 export default function Academics(){
 
     const [selectedOption, setSelectedOption] = useState("academic_record");
     const [results, setResults] = useState(null);
+    const [examData, setExamData] = useState(null);
+    const hasStudentInfo = getStudentInfo();
     let widget = null;
 
     const supabase = createClient(
@@ -21,8 +25,8 @@ export default function Academics(){
         const { data, error } = await supabase
             .from('results')
             .select('*').eq('student_number',localStorage.getItem('studentNumber'));
-        if (error) console.log("Error: ", error);
-        else setResults(processAcademicData(data));
+        if (error) {console.log("Error: ", error);}
+        else {setResults(processAcademicData(data));setExamData(handleExamData(data))}
     };
 
     useEffect(() => {
@@ -37,7 +41,7 @@ export default function Academics(){
             widget = <Academics_ProgressReport results={results} />
             break;
         case "exam_results":
-            widget = <Academics_ExamResults results={results} />
+            widget = <Academics_ExamResults results={examData} />
             break;
         default:
             widget = <>

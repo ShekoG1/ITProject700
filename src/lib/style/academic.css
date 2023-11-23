@@ -332,6 +332,32 @@ td span{
 }
 /* END GENERAL */
 
+/* TOOL BAR */
+#record-tools, #report-tools{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: left;
+    padding-bottom: 10px;
+    margin: 0 25% 0 25%;
+}
+#record-tools button, #report-tools button{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 1s;
+    font-size: 20px;
+    font-weight: 450;
+    color: white;
+}
+#record-tools button span:nth-child(1), #report-tools button span:nth-child(1){
+    padding-right: 5px;
+}
+#record-tools button:hover, #report-tools button:hover{
+    border-bottom-color: var(--red);
+}
+/* END TOOL BAR */
+
 /* Desktop */
 @media only screen and (min-width: 768px) {
     /* Academic Record */

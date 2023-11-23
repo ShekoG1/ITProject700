@@ -98,9 +98,9 @@ export default function processAcademicData(data){
         });
     });
 
-    console.log('-------------------------------------------------');
-    console.log(processedData);
-    console.log('-------------------------------------------------');
+    // console.log('-------------------------------------------------');
+    // console.log(processedData);
+    // console.log('-------------------------------------------------');
 
     return processedData;
 }

@@ -1,64 +1,98 @@
 import validateUser from './../util/auth';
 import DataManipulation from './../util/dataManipulation';
+import { usePDF } from "react-to-pdf";
 
 export default function Academics_ProgressReport(props){
     validateUser();
     const dataManipulation = new DataManipulation();
     const results = props.results;
-    console.log(results)
+    const { toPDF, targetRef } = usePDF({filename: 'ProgressReport.pdf'});
+    const student = JSON.parse(localStorage.getItem('student'));
+
+    // console.log(results)
     return(
-        <div id="progressreport-content">
-            <div id="header">
-                <h1>Progress Report</h1>
+        <>
+            <div id="report-tools">
+                <button onClick={() => {toPDF()}}>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                    </span>
+                    <span>Download</span>
+                </button>
+                <button onClick={()=>window.print()}>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                        </svg>
+                    </span>
+                    <span>Print</span>
+                </button>
             </div>
-            <div id="student-details">
-                <div id="student-names">
-                    <span id="student-fname">Shekhar</span>
-                    <span id="student-mnames"></span>
-                    <span id="student-lname">Maharaj</span>
+            <div id="progressreport-content">
+                <div id="header">
+                    <h1>Progress Report</h1>
                 </div>
-                <div id="student-number">402101963</div>
-            </div>
-            <div id="progress-reports">
-                {results.map((module, index) => {
-                    return module.years.map((year, yearIndex) => {
-                        return year.semesters.map((semester, semesterIndex) => {
-                            return (
-                                <div key={`${index}-${yearIndex}-${semesterIndex}`} className="report">
-                                    <div className="report-year">{year.year}</div>
-                                    {/* <div className="report-qualification">{module.module_code}</div> */}
-                                    <div className="report-qualification">BSC IT</div>
-                                    <div className="report-content">
-                                         <div className="report-subject">
-                                            <span>SUBJECT: {module.module_code}</span>
-                                        </div>
-                                        <table className='grade'>
-                                            <tbody>
-                                            {semester.marks.map((mark, markIndex) => {
-                                                return (
-                                                    <td key={markIndex} className="report-grade">
-                                                        <tr className={`progress-heading ${mark.type === "exam" ? 'exam':null}`}>{dataManipulation.formatString(mark.type)}</tr>
-                                                        <tr>{mark.mark_percentage}</tr>
-                                                    </td>
-                                                );
-                                            })}
-                                            </tbody>
-                                        </table>
-                                        <div className='breaker'></div>
-                                        <div className="report-detail">
-                                            <div className="academic-period">Semester {semester.semester}</div>
-                                            <div className="full-period-mark">Full Period Mark: {semester.total}</div>
-                                        </div>
-                                        <div className="exam-admission">
-                                            Exam Admission: Y
+                <div id="student-details">
+                    <div id="student-names">
+                        <span id="student-fname">{student.fName}</span>
+                        <span id="student-mnames"></span>
+                        <span id="student-lname">{student.lName}</span>
+                    </div>
+                    <div id="student-number">{localStorage.getItem('studentNumber')}</div>
+                </div>
+                <div id="progress-reports">
+                    {results.map((module, index) => {
+                        return module.years.map((year, yearIndex) => {
+                            return year.semesters.map((semester, semesterIndex) => {
+                                let fullPeriodMark = 0;
+
+                                return (
+                                    <div key={`${index}-${yearIndex}-${semesterIndex}`} className="report">
+                                        <div className="report-year">{year.year}</div>
+                                        {/* <div className="report-qualification">{module.module_code}</div> */}
+                                        <div className="report-qualification">BSC IT</div>
+                                        <div className="report-content">
+                                            <div className="report-subject">
+                                                <span>SUBJECT: {module.module_code}</span>
+                                            </div>
+                                            <table className='grade'>
+                                                <tbody>
+                                                {semester.marks.map((mark, markIndex) => {
+                                                    if(mark.type === "assignment_3"){
+                                                        fullPeriodMark += mark.mark_percentage * 0.34;
+                                                    }else if(mark.type != "exam"){
+                                                        fullPeriodMark += mark.mark_percentage * 0.33;
+                                                    }
+
+                                                    return (
+                                                        <td key={markIndex} className="report-grade">
+                                                            <tr className={`progress-heading ${mark.type === "exam" ? 'exam':null}`}>{dataManipulation.formatString(mark.type)}</tr>
+                                                            <tr>{mark.mark_percentage}</tr>
+                                                        </td>
+                                                    );
+                                                })}
+                                                </tbody>
+                                            </table>
+                                            <div className='breaker'></div>
+                                            <div className="report-detail">
+                                                <div className="academic-period">Semester {semester.semester}</div>
+                                                <div className="full-period-mark">Full Period Mark: {fullPeriodMark.toFixed(1)}</div>
+                                            </div>
+                                            <div className="exam-admission">
+                                                Exam Admission: {fullPeriodMark.toFixed(1) > 49 ? "Y":"N"}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
+                                );
+                            });
                         });
-                    });
-                })}
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
