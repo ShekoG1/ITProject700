@@ -8,9 +8,8 @@ import processAcademicData from '../util/handleAcademicRecord';
 import handleExamData from "../util/handleExamResults";
 import getStudentInfo from '../util/getStudentInfo';
 
-export default function Academics(){
-
-    const [selectedOption, setSelectedOption] = useState("academic_record");
+export default function Academics(props){
+    const [selectedOption, setSelectedOption] = useState(props.selectedOption ? props.selectedOption : "academic_record");
     const [results, setResults] = useState(null);
     const [examData, setExamData] = useState(null);
     const hasStudentInfo = getStudentInfo();

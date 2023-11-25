@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Finance_FeeDetail from "../islands/Finance_FeeDetail";
 import Finance_AgeAnalysis from "../islands/Finance_AgeAnalysis";
 import Finance_BursaryDetail from "../islands/Finance_BursaryDetail";
 import Finance_DepositDetail from "../islands/Finance_DepositDetail";
 import "./../lib/style/finances.css";
+import { createClient } from '@supabase/supabase-js';
 
 export default function Finances(){
 
@@ -11,10 +12,42 @@ export default function Finances(){
     const [selectedOption, setSelectedOption] = useState("fee_detail");
     let widget = null;
 
+    const [wait,setWait] = useState(true)
+    const[finance,setFinance]= useState(null);
+
+    useEffect(() => {
+        const fetchSupabaseData = async () => {
+          const supabase = createClient(
+            process.env.REACT_APP_SUPABASE_URL,
+            process.env.REACT_APP_SUPABASE_KEY
+          );
+    
+          try {
+            const { data, error } = await supabase
+              .from('studentFinance')
+              .select(`*`)
+              .eq('studentNumber',localStorage.getItem('studentNumber'));
+            if (error) {
+                setWait(true);
+                console.log(error)
+            } else {
+                console.log(data)
+                setFinance(data);
+                setWait(false);
+            }
+          } catch (error) {
+            setWait(true);
+            console.log(error)
+          }
+        };
+    
+        fetchSupabaseData();
+      }, []);
+
     // Determine widget to show
     switch (selectedOption) {
         case "fee_detail":
-            widget = <Finance_FeeDetail/>;
+            widget = <Finance_FeeDetail financeData={finance}/>;
         break;
         case "age_analysis":
             widget = <Finance_AgeAnalysis/>
@@ -43,7 +76,10 @@ export default function Finances(){
                 <button onClick={()=>{setSelectedOption("bursary_detail");}} className={selectedOption === "bursary_detail" ? "option option-selected":"option"}>Bursary Detail</button>
             </div>
             <div id="finance-content">
-                {widget}
+                {
+                    wait ? "Loading...":
+                    widget
+                }
             </div>
         </div>
     );
