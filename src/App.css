@@ -127,3 +127,17 @@ input[type=number] {
   height: 2px;
   background-color: var(--red);
 }
+
+.form-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.FakeFilledBtn{
+  background-color: black;
+  padding: 13px;
+  color: white;
+  border: none;
+}

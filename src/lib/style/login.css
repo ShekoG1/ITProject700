@@ -102,6 +102,40 @@ footer .legal{
     font-size: 15px;
 }
 
+/* Forgot password */
+.form-title{
+    border-bottom: 2px solid var(--red);
+}
+.forgot-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10% 10px 10%;
+}
+.cardBox{
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+.form-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-input input{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+}
+.form-input p{
+    font-size: 15px;
+}
+
 /* Desktop */
 @media only screen and (min-width: 768px) {
     #login-header{
@@ -125,5 +159,8 @@ footer .legal{
     #student-number-container .PinInput-Pin{
         width: 30px;
         height: 45px;
+    }
+    .cardBox{
+        width: 30%;
     }
 }

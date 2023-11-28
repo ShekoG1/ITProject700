@@ -4,8 +4,46 @@ import finalResults from "../lib/assets/finalResults.jpg";
 import academicRecord from "../lib/assets/academicRecord.jpg";
 import progressReport from "../lib/assets/progressReport.jpg";
 import profile from "../lib/assets/profile.jpg";
+import { useState, useEffect } from "react";
+import { createClient } from '@supabase/supabase-js';
 
 export default function Dashboard(props){
+
+    const [wait,setWait] = useState(true)
+    const [balanceDue,setBalanceDue] = useState("loading...");
+
+    const formatMoney = (amount) => {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ZAR' }).format(amount);
+    }
+
+    useEffect(() => {
+        const fetchSupabaseData = async () => {
+          const supabase = createClient(
+            process.env.REACT_APP_SUPABASE_URL,
+            process.env.REACT_APP_SUPABASE_KEY
+          );
+    
+          try {
+            const { data, error } = await supabase
+              .from('studentFinance')
+              .select(`*`)
+              .eq('studentNumber',localStorage.getItem('studentNumber'));
+            if (error) {
+                setWait(true);
+                console.log(error)
+            } else {
+                console.log(data)
+                setBalanceDue(data[data.length-1].balance);
+                setWait(false);
+            }
+          } catch (error) {
+            setWait(true);
+            console.log(error)
+          }
+        };
+    
+        fetchSupabaseData();
+      }, []);
 
     return(
         <div id="dashboard">
@@ -16,10 +54,10 @@ export default function Dashboard(props){
                     </div>
                     <div className="component-content">
                         <span>Next Payment</span>
-                        <span><strong>R 3, 500.00</strong></span>
+                        <span><strong>{wait ? "Loading..." : formatMoney(balanceDue)}</strong></span>
                     </div>
                 </div>
-                <div className="component orange" id="final-results" onClick={()=>{window.location = "/Academics"}}>
+                <div className="component orange" id="final-results" onClick={()=>{localStorage.setItem('selectedOption','exam_results');window.location = "/Academics"}}>
                     <div className="component-content">
                         <img src={finalResults} alt="Final Results"/>
                     </div>
@@ -27,7 +65,7 @@ export default function Dashboard(props){
                         <span>Final Results</span>
                     </div>
                 </div>
-                <div className="component pink" id="academic-record" onClick={()=>{window.location = "/Academics"}}>
+                <div className="component pink" id="academic-record" onClick={()=>{localStorage.setItem('selectedOption','academic_record');window.location = "/Academics"}}>
                     <div className="component-content">
                         <img src={academicRecord} alt="Academic Record"/>
                     </div>
@@ -35,7 +73,7 @@ export default function Dashboard(props){
                         <span>Academic Record</span>
                     </div>
                 </div>
-                <div className="component purple" id="progress-report" onClick={()=>{window.location = "/Academics"}}>
+                <div className="component purple" id="progress-report" onClick={()=>{localStorage.setItem('selectedOption','progress_report');window.location = "/Academics"}}>
                     <div className="component-content">
                         <img src={progressReport} alt="Progress Report"/>
                     </div>

@@ -9,7 +9,7 @@ import handleExamData from "../util/handleExamResults";
 import getStudentInfo from '../util/getStudentInfo';
 
 export default function Academics(props){
-    const [selectedOption, setSelectedOption] = useState(props.selectedOption ? props.selectedOption : "academic_record");
+    const [selectedOption, setSelectedOption] = useState(localStorage.getItem('selectedOption') ? localStorage.getItem('selectedOption') : "academic_record");
     const [results, setResults] = useState(null);
     const [examData, setExamData] = useState(null);
     const hasStudentInfo = getStudentInfo();
@@ -37,10 +37,10 @@ export default function Academics(props){
             widget = results == null ? <></> : <Academics_AcademicRecord results={results} />;
             break;
         case "progress_report":
-            widget = <Academics_ProgressReport results={results} />
+            widget = results == null ? <></> :  <Academics_ProgressReport results={results} />
             break;
         case "exam_results":
-            widget = <Academics_ExamResults results={examData} />
+            widget = results == null ? <></> :  <Academics_ExamResults results={examData} />
             break;
         default:
             widget = <>
