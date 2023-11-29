@@ -48,7 +48,7 @@ export default function Dashboard(props){
     return(
         <div id="dashboard">
             <div id="components">
-                <div className="component" id="finance-due" onClick={()=>{window.location = "/Finance"}}>
+                <div className="component" id="finance-due" onClick={()=>{window.location = "/Finances"}}>
                     <div className="component-heading">
                         <span>Finance</span>
                     </div>
