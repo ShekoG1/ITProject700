@@ -142,7 +142,7 @@ export default function Dashboard(props){
                         </div>
                     </div>
                     <div className="view-now-btn">
-                        <FilledBtn label="Contact" onClick={(e)=>{e.preventDefault();window.location = "mailto:recipient@example.com?subject=Your%20Prefilled%20Subject"}}/>
+                        <FilledBtn label="Contact" onClick={(e)=>{e.preventDefault();window.location = `mailto:KhanyisileN@richfield.ac.za?subject=${localStorage.getItem('studentNumber')}%20|%20You%20Subject`}}/>
                     </div>
                 </div>
                 <div id="quote">
