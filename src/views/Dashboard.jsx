@@ -34,6 +34,7 @@ export default function Dashboard(props){
             } else {
                 console.log(data)
                 setBalanceDue(data[data.length-1].balance);
+                localStorage.setItem("balance", formatMoney(data[data.length-1].balance))
                 setWait(false);
             }
           } catch (error) {

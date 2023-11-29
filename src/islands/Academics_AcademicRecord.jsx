@@ -82,7 +82,7 @@ console.log(localStorage.getItem("student"))
                     <div id="student-dob">{wait ? "Loading..." : `${student.dateOfBirth}`}</div>
                 </div>
                 <div id="student-owes-institution">
-                    You owe the institution <span id="student-owing-amount">ZAR 7674</span>
+                    You owe the institution <span id="student-owing-amount">{localStorage.getItem("balance")}</span>
                 </div>
                 {Object.entries(results.reduce((acc, module) => {
                     module.years.forEach((year) => {
