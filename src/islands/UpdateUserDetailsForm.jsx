@@ -76,7 +76,7 @@ const UpdateUserDetailsForm = (e) => {
                 fName: document.querySelector("#fName").value,
                 lName: document.querySelector("#lName").value,
                 emailAddress: document.querySelector("#emailAddress").value,
-                contactNumber: document.querySelector("#contactNumber").value
+                contactNumber: "0"+document.querySelector("#contactNumber").value
             }
             const updateStudentAddress = {
                 street:document.querySelector("#street").value,
