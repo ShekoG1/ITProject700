@@ -130,6 +130,7 @@ console.log(localStorage.getItem("student"))
                             </div>
                             <div className="records">
                                 {modules.map((module, moduleIndex) => {
+                                    let color
                                     return (
                                         <div key={moduleIndex} className={`record-item ${module.total >= 75 ? 'pass-distinction-border' : module.total >= 60 ? 'pass-safe-border' : module.total >= 50 ? 'pass-warning-border' : module.total >= 40 ? 'pass-border' : 'fail-border'}`}>
                                             <div className="subject"><span>SUBJECT:</span>
@@ -141,7 +142,7 @@ console.log(localStorage.getItem("student"))
                                                 </span>
                                             </div>
                                             <div className="academic-period">
-                                                SEMESTER {module.semester} (JAN - JUN)
+                                                SEMESTER {module.semester}
                                             </div>
                                             <div className="marks">
                                                 <table>
